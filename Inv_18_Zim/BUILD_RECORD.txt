@@ -1,0 +1,6 @@
+Investigation 18 — Great Zimbabwe, 1450 CE
+Approved visual: V2. Functional microsite: V1.
+Capability: Historical synthesis and visual storytelling.
+Implementation: AI-assisted scene and code; deterministic client-side interactions, no live LLM.
+Prompt methodology: grounded historical reconstruction, avoiding invented defensive tower details.
+Deployment: not deployed.

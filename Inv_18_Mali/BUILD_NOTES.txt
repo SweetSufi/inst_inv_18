@@ -1,0 +1,3 @@
+Investigation 18 — Mali Empire V3
+Approved artwork retained. Title moved outside scene; four compact accessible hotspots with hover/focus labels; removed obstructive overlay and oversized yellow artifact; gentle ambient sunlight and river effects; research note and source content retained.
+Runtime interactions: deterministic JavaScript, no live LLM. Historical illustration remains interpretive.

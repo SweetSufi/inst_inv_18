@@ -1,0 +1,6 @@
+Investigation 18 / Destination 4 / Cusco / V1
+Approved street-facing visual: AI-generated interpretation.
+Primary capability: Historical synthesis and visual storytelling.
+Implementation: deterministic HTML/CSS/JS, no live LLM.
+Six accessible object markers. Source register links give contextual evidence, not object-level authentication.
+No deployment URL yet.

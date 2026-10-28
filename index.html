@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Investigation 18 — The Institute of Unnecessary Research</title>
+<meta name="description" content="Twelve destinations, viewed from a starship navigation bridge.">
+<link rel="preload" href="assets/fonts/kingsland.woff" as="font" type="font/woff" crossorigin>
+<style>
+@font-face{font-family:Kingsland;src:url('assets/fonts/kingsland.woff') format('woff');font-display:swap}
+@font-face{font-family:Borel;src:url('assets/fonts/borel.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'Nunito Sans';src:url('assets/fonts/nunito-sans.ttf') format('truetype');font-weight:200 1000;font-display:swap}
+*{box-sizing:border-box}
+html{background:#0c0e13}
+body{margin:0;background:#0c0e13;color:#e9e3d6;font:400 16px/1.6 'Nunito Sans',system-ui,sans-serif}
+a{color:#f0cf94;text-underline-offset:3px}a:hover{color:#fff1d2}
+:focus-visible{outline:3px solid #ffd98a;outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-60px;z-index:50;background:#f5f0e5;color:#292929;padding:10px 14px;border-radius:6px}.skip:focus{top:8px}
+header.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px 24px;flex-wrap:wrap;padding:14px clamp(14px,3vw,36px)}
+header.top h1{margin:0;font:400 clamp(17px,2vw,24px)/1.2 Kingsland,serif;letter-spacing:.02em}
+header.top h1 small{display:block;font:600 11px/1.6 'Nunito Sans',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#a9a396}
+.motto{font:400 clamp(16px,1.6vw,20px)/1.2 Borel,cursive;color:#e8d5ae}
+.wrap{position:relative;width:100%;aspect-ratio:1942/809;overflow:hidden;background:#07080b}
+.stage{position:absolute;inset:0;container-type:inline-size}
+.ship{position:absolute;inset:0;width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none}
+.display{position:absolute;left:0;top:12.36%;width:100%;height:45.74%;overflow:hidden;background:#03040a}
+.display>*{position:absolute;inset:0;width:100%;height:100%}
+.backdrop{object-fit:cover;transform-origin:50% 50%;animation:drift 120s ease-in-out infinite alternate;opacity:.85;transition:opacity 1.6s ease}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.22)}}
+#stars{transition:opacity 1.6s ease}
+.display.art .backdrop,.display.art #stars{opacity:0}
+.art-img{object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity 1.6s ease,transform 3.2s cubic-bezier(.2,.6,.2,1);animation:pan 70s ease-in-out infinite alternate;will-change:opacity,transform}
+.art-img.on{opacity:1;transform:scale(1)}
+@keyframes pan{from{object-position:50% var(--y0)}to{object-position:50% var(--y1)}}
+.glass{pointer-events:none;background:linear-gradient(180deg,rgba(6,8,14,.55) 0,rgba(6,8,14,0) 16%,rgba(6,8,14,0) 80%,rgba(6,8,14,.5) 100%),linear-gradient(90deg,rgba(6,8,14,.35) 0,rgba(6,8,14,0) 8%,rgba(6,8,14,0) 92%,rgba(6,8,14,.35) 100%)}
+.row{position:absolute;left:33.2%;width:33.6%;display:flex;align-items:center;gap:2%;z-index:3}
+.row1{top:59.5%;height:6.2%;gap:1.5%}
+.row2{top:68%;height:7.6%;justify-content:center;gap:4%}
+.btn{font:600 clamp(12px,1.1cqw,15px)/1 'Nunito Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#f2ead8;background:rgba(10,12,18,.35);border:1px solid rgba(255,236,200,.5);border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;transition:background .25s,border-color .25s,color .25s;padding:0 1.2em}
+.btn:hover{background:rgba(255,226,170,.18);border-color:#ffe7b8;color:#fff}
+.btn[aria-disabled=true]{opacity:.4;cursor:default;pointer-events:none}
+.arrow{width:2.7cqw;min-width:30px;height:100%;max-height:2.7cqw;min-height:30px;padding:0;font-size:clamp(16px,1.6cqw,22px);letter-spacing:0}
+.year{flex:1;height:100%;max-height:2.7cqw;min-height:30px;gap:.7em;letter-spacing:.2em}
+.year svg{width:.7em;height:.7em;flex:none}
+.explore{min-height:30px;height:78%;max-height:2.9cqw;padding:0 2.4em}
+.sound{width:2.9cqw;min-width:32px;height:78%;max-height:2.9cqw;min-height:32px;padding:0}
+.sound svg{width:55%;height:55%}
+.menu{position:absolute;left:0;right:0;bottom:calc(100% + 8px);margin:0;padding:8px;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:rgba(10,12,18,.92);border:1px solid rgba(255,236,200,.4);border-radius:14px;backdrop-filter:blur(8px);box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.menu[hidden]{display:none}
+.menu a{display:flex;align-items:center;justify-content:center;min-height:38px;padding:6px 4px;border-radius:999px;color:#f2ead8;text-decoration:none;font:600 13px/1.2 'Nunito Sans',sans-serif;letter-spacing:.06em;white-space:nowrap}
+.menu a:hover,.menu a:focus-visible{background:rgba(255,226,170,.2);color:#fff}
+.menu a[aria-current=true]{box-shadow:inset 0 0 0 1px #ffe7b8}
+.cap{position:absolute;left:33.2%;width:33.6%;top:76.6%;text-align:center;font:600 clamp(10px,.95cqw,13px)/1.3 'Nunito Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#f0cf94;z-index:3;pointer-events:none}
+.stardate{position:absolute;left:84.2%;top:59.4%;width:12%;z-index:3;font:600 clamp(8px,.8cqw,12px)/1.2 'Nunito Sans',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#cfe3f0;text-shadow:0 0 8px rgba(120,190,255,.5);pointer-events:none;transform:skewY(-1deg)}
+.stardate b{font-weight:700;color:#f0e6cf}
+main section{padding:clamp(36px,6vw,80px) clamp(16px,4vw,48px)}
+.inner{max-width:1080px;margin:0 auto}
+h2{font:400 clamp(26px,3.2vw,40px)/1.15 Kingsland,serif;margin:0 0 .5em}
+.dir{background:#0c0e13}
+.dir ol{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 48px}
+.dir li{border-top:1px solid rgba(233,227,214,.18)}
+.dir li a{display:grid;grid-template-columns:minmax(110px,150px) 1fr;gap:16px;padding:16px 4px;text-decoration:none;color:#e9e3d6;align-items:baseline}
+.dir li a:hover{background:rgba(255,226,170,.07)}
+.dy{font:400 22px/1.2 Kingsland,serif;color:#f0cf94}
+.dp{font-size:16px}
+.spec{display:block;margin-top:4px;font:600 12px/1.4 'Nunito Sans',sans-serif;font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:#a9c8e8}
+.note{background:#F5F0E5;color:#292929}
+.note a{color:#292929}
+.note h2,.note h3{font-family:Kingsland,serif;font-weight:400}
+.note .lead{font:400 clamp(18px,2vw,22px)/1.5 Borel,cursive;color:#292929;max-width:46ch;margin:0 0 36px}
+.note dl{margin:0;border-top:1px solid #CFC8BC}
+.note .r{display:grid;grid-template-columns:minmax(150px,230px) 1fr;gap:8px 32px;padding:22px 0;border-bottom:1px solid #CFC8BC}
+.note dt{font:400 20px/1.3 Kingsland,serif;color:#292929}
+.note dd{margin:0;color:#494949;max-width:68ch}
+.note dd strong{color:#292929}
+.note dd p{margin:0 0 .8em}.note dd p:last-child{margin:0}
+.k{font:700 12px/1.4 'Nunito Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#494949;display:block;margin-bottom:6px}
+footer{padding:28px clamp(16px,4vw,48px) 44px;text-align:center;font:400 18px/1.3 Borel,cursive;color:#e8d5ae}
+@media(max-width:1024px){
+ .wrap{aspect-ratio:auto;height:min(78vh,560px);min-height:420px}
+ .stage{left:50%;right:auto;width:calc(max(78vh,420px)*2.4);width:calc(min(78vh,560px)*2.4);min-width:calc(420px*2.4);transform:translateX(-50%);inset:0 auto 0 50%}
+ .row,.cap,.stardate{display:none}
+ .mc{position:absolute;left:50%;transform:translateX(-50%);bottom:14px;width:min(92%,440px);z-index:4;display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:20px;background:rgba(10,12,18,.72);border:1px solid rgba(255,236,200,.28);backdrop-filter:blur(8px)}
+ .mc .btn{font-size:13px;min-height:44px}
+ .mc .arrow{width:48px;min-width:48px;height:48px;max-height:none;font-size:20px}
+ .mc .year{height:48px;max-height:none}
+ .mc .explore{height:48px;max-height:none;flex:1}
+ .mc .sound{width:48px;height:48px;max-height:none}
+ .mc .r1,.mc .r2{display:flex;gap:8px;align-items:center;position:relative}
+ .mc .menu{bottom:calc(100% + 18px)}
+ .mc .capm{text-align:center;font:600 11px/1.3 'Nunito Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#f0cf94;min-height:0}
+ .mc .capm:empty{display:none}
+ .mstar{position:absolute;right:12px;top:10px;z-index:4;font:600 10px/1.2 'Nunito Sans',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#cfe3f0}
+}
+@media(min-width:1025px){.mc,.mstar{display:none}}
+@media(max-width:640px){.note .r{grid-template-columns:1fr}.dir li a{grid-template-columns:110px 1fr}.menu{grid-template-columns:repeat(3,1fr)}}
+@media(prefers-reduced-motion:reduce){.backdrop,.art-img{animation:none}.art-img{transform:none;transition:opacity .4s}.backdrop,#stars{transition:opacity .4s}}
+</style></head>
+<body>
+<a class="skip" href="#directory">Skip to destinations</a>
+<header class="top"><h1>Investigation 18<small>The Institute of Unnecessary Research</small></h1><p class="motto" style="margin:0">Advancing Knowledge Sideways</p></header>
+<main>
+<div class="wrap" id="bridge" role="region" aria-label="Starship navigation bridge">
+ <div class="stage" id="stage">
+  <img class="ship" src="assets/starship-bridge.png" alt="" width="1942" height="809" fetchpriority="high">
+  <div class="display" id="display" aria-hidden="true">
+   <img class="backdrop" src="assets/starfield-backdrop.png" alt="">
+   <canvas id="stars"></canvas>
+   <div id="arts"></div>
+   <div class="glass"></div>
+  </div>
+  <div class="stardate" aria-label="Stardate 2901.03">Stardate <b>2901.03</b></div>
+  <div class="row row1" id="r1d"></div>
+  <div class="row row2" id="r2d"></div>
+  <div class="cap" id="capd" aria-hidden="true"></div>
+ </div>
+ <div class="mstar" aria-hidden="true">Stardate <b>2901.03</b></div>
+ <div class="mc" id="mc"></div>
+</div>
+<div class="sr" role="status" aria-live="polite" id="live"></div>
+<template id="ctl-r1">
+ <button type="button" class="btn arrow" data-act="prev" aria-label="Previous destination">&#8249;</button>
+ <button type="button" class="btn year" data-act="menu" aria-haspopup="true" aria-expanded="false" aria-controls="menu-ID"><span data-year>Select a year</span><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+ <button type="button" class="btn arrow" data-act="next" aria-label="Next destination">&#8250;</button>
+ <ul class="menu" id="menu-ID" role="menu" aria-label="Destination years" hidden><li role="none"><a role="menuitem" href="Inv_18_Pata/index.html" data-i="0">300 BCE</a></li><li role="none"><a role="menuitem" href="Inv_18_changan/index.html" data-i="1">750 CE</a></li><li role="none"><a role="menuitem" href="Inv_18_Kilwa/index.html" data-i="2">1000 CE</a></li><li role="none"><a role="menuitem" href="Inv_18_Angkor/index.html" data-i="3">1150 CE</a></li><li role="none"><a role="menuitem" href="Inv_18_Mali/index.html" data-i="4">1305 CE</a></li><li role="none"><a role="menuitem" href="Inv_18_Zim/index.html" data-i="5">1450 CE</a></li><li role="none"><a role="menuitem" href="Inv_18_Cusco/index.html" data-i="6">1491 CE</a></li><li role="none"><a role="menuitem" href="Inv_18_Lenape/index.html" data-i="7">1500 CE</a></li><li role="none"><a role="menuitem" href="Inv_18_Vija/index.html" data-i="8">1550 CE</a></li><li role="none"><a role="menuitem" href="Inv_18_Accra_1967_V9/index.html" data-i="9">1967 CE</a></li><li role="none"><a role="menuitem" href="Inv_18_Tokyo_2010/index.html" data-i="10">2010 CE</a></li><li role="none"><a role="menuitem" href="Inv_18_Phila/index.html" data-i="11">2400 CE</a></li></ul>
+</template>
+<template id="ctl-r2">
+ <a class="btn explore" data-act="explore" href="#" aria-disabled="true">Explore</a>
+ <button type="button" class="btn sound" data-act="sound" aria-pressed="false" aria-label="Sound off. Turn ambient sound on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><g class="on" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M16 9a4 4 0 010 6"/><path d="M18.5 6.5a8 8 0 010 11"/></g><path class="off" d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+</template>
+<section class="dir" id="directory" aria-labelledby="dir-h"><div class="inner">
+ <h2 id="dir-h">Destinations</h2>
+ <ol><li><a href="Inv_18_Pata/index.html"><span class="dy">300 BCE</span><span class="dp">Pataliputra, Mauryan India</span></a></li><li><a href="Inv_18_changan/index.html"><span class="dy">750 CE</span><span class="dp">Chang’an, Tang China</span></a></li><li><a href="Inv_18_Kilwa/index.html"><span class="dy">1000 CE</span><span class="dp">Kilwa Kisiwani, Swahili Coast</span></a></li><li><a href="Inv_18_Angkor/index.html"><span class="dy">1150 CE</span><span class="dp">Angkor Wat, Khmer Empire</span></a></li><li><a href="Inv_18_Mali/index.html"><span class="dy">1305 CE</span><span class="dp">Mali Empire, West Africa</span></a></li><li><a href="Inv_18_Zim/index.html"><span class="dy">1450 CE</span><span class="dp">Great Zimbabwe, Southern Africa</span></a></li><li><a href="Inv_18_Cusco/index.html"><span class="dy">1491 CE</span><span class="dp">Cusco, Inca Empire, Peru</span></a></li><li><a href="Inv_18_Lenape/index.html"><span class="dy">1500 CE</span><span class="dp">Lenape community, Philadelphia region</span></a></li><li><a href="Inv_18_Vija/index.html"><span class="dy">1550 CE</span><span class="dp">Vijayanagara, South India</span></a></li><li><a href="Inv_18_Accra_1967_V9/index.html"><span class="dy">1967 CE</span><span class="dp">Accra, Ghana</span></a></li><li><a href="Inv_18_Tokyo_2010/index.html"><span class="dy">2010 CE</span><span class="dp">Tokyo, Japan</span></a></li><li><a href="Inv_18_Phila/index.html"><span class="dy">2400 CE</span><span class="dp">Philadelphia<em class="spec">Speculative future · not a historical reconstruction or a prediction</em></span></a></li></ol>
+</div></section>
+<section class="note" id="research" aria-labelledby="note-h"><div class="inner">
+ <h2 id="note-h">Behind the Investigation: Research Note</h2>
+ <p class="lead">Behind the Investigation explains the generative AI capabilities, technologies, and design decisions demonstrated by each Institute investigation.</p>
+ <dl>
+  <div class="r"><dt>Capability</dt><dd><strong>Historical synthesis &amp; visual storytelling.</strong> Each destination combines historical sources with AI-assisted imagery to suggest everyday life in a place and time. The twelve scenes are viewed from one starship so they can be compared side by side.</dd></div>
+  <div class="r"><dt>Prompt engineering method</dt><dd><strong>Grounded prompting.</strong> <p>Grounded prompting uses trustworthy historical sources to constrain reconstruction. Generated details still require verification.</p><p>Each destination separates documented evidence from artistic interpretation. Philadelphia 2400 CE is a speculative future. It is neither a historical reconstruction nor a prediction.</p></dd></div>
+  <div class="r"><dt>Construction workflow</dt><dd><strong>One-shot AI-assisted website development.</strong> This site was assembled from a single written brief, the twelve completed destination microsites, and the supplied artwork.</dd></div>
+  <div class="r"><dt>How this site runs</dt><dd><p>No live AI model runs in this experience. The destination artwork is a set of static, previously generated images. The starfield is a deterministic canvas animation. The year menu, arrows, Explore action, and sound toggle are ordinary browser controls and scripts.</p><p>The ambient sound is one pre-mixed MP3 made from two supplied audio tracks, softened and layered offline.</p></dd></div>
+  <div class="r"><dt>Limitations</dt><dd>The panoramic display is much wider than most artworks, so each image fills the display by cropping and slowly panning. Images are shown in full inside each destination.</dd></div>
+ </dl>
+</div></section>
+</main>
+<footer>Advancing Knowledge Sideways</footer>
+<script>
+const DEST=[{"d":"Inv_18_Pata/index.html","y":"300 BCE","p":"Pataliputra, Mauryan India","a":"assets/art/01_300_BCE_Pataliputra.jpg","py":[32,68],"spec":false},{"d":"Inv_18_changan/index.html","y":"750 CE","p":"Chang’an, Tang China","a":"assets/art/02_750_CE_Changan.jpg","py":[32,68],"spec":false},{"d":"Inv_18_Kilwa/index.html","y":"1000 CE","p":"Kilwa Kisiwani, Swahili Coast","a":"assets/art/03_c1000_CE_Kilwa_Kisiwani.jpg","py":[32,68],"spec":false},{"d":"Inv_18_Angkor/index.html","y":"1150 CE","p":"Angkor Wat, Khmer Empire","a":"assets/art/04_c1150_CE_Angkor_Wat.jpg","py":[32,68],"spec":false},{"d":"Inv_18_Mali/index.html","y":"1305 CE","p":"Mali Empire, West Africa","a":"assets/art/05_1305_CE_Mali_Empire.jpg","py":[32,68],"spec":false},{"d":"Inv_18_Zim/index.html","y":"1450 CE","p":"Great Zimbabwe, Southern Africa","a":"assets/art/06_c1450_CE_Great_Zimbabwe.jpg","py":[32,68],"spec":false},{"d":"Inv_18_Cusco/index.html","y":"1491 CE","p":"Cusco, Inca Empire, Peru","a":"assets/art/07_1491_CE_Cusco.jpg","py":[32,68],"spec":false},{"d":"Inv_18_Lenape/index.html","y":"1500 CE","p":"Lenape community, Philadelphia region","a":"assets/art/08_c1500_CE_Lenape.png","py":[32,68],"spec":false},{"d":"Inv_18_Vija/index.html","y":"1550 CE","p":"Vijayanagara, South India","a":"assets/art/09_1550_CE_Vijayanagara.jpg","py":[32,68],"spec":false},{"d":"Inv_18_Accra_1967_V9/index.html","y":"1967 CE","p":"Accra, Ghana","a":"assets/art/10_1967_CE_Accra.png","py":[32,68],"spec":false},{"d":"Inv_18_Tokyo_2010/index.html","y":"2010 CE","p":"Tokyo, Japan","a":"assets/art/11_2010_CE_Tokyo.png","py":[15,85],"spec":false},{"d":"Inv_18_Phila/index.html","y":"2400 CE","p":"Philadelphia — speculative future","a":"assets/art/12_2400_CE_Philadelphia_Speculative_Future.png","py":[15,85],"spec":true}];
+const AUDIO='assets/starship-ambience.mp3';
+const RM=matchMedia('(prefers-reduced-motion: reduce)');
+const $=s=>document.querySelector(s);
+const display=$('#display'),arts=$('#arts'),live=$('#live');
+const POLYS=[[[172,143],[260,150],[400,162],[600,172],[800,177],[1000,179],[1200,177],[1400,168],[1550,160],[1680,150],[1768,140],[1745,200],[1710,270],[1670,350],[1625,458],[1600,468],[1300,466],[1000,465],[700,466],[340,468],[318,462],[270,330],[225,230]],[[0,118],[40,135],[85,170],[130,280],[170,380],[192,435],[186,455],[0,460]],[[1942,118],[1900,135],[1860,170],[1815,270],[1770,370],[1742,430],[1750,455],[1942,460]]];
+{const ns='http://www.w3.org/2000/svg',sv=document.createElementNS(ns,'svg');sv.setAttribute('width','0');sv.setAttribute('height','0');sv.style.position='absolute';sv.innerHTML='<clipPath id="winclip" clipPathUnits="objectBoundingBox">'+POLYS.map(P=>'<polygon points="'+P.map(([x,y])=>(x/1942).toFixed(4)+','+((y-100)/370).toFixed(4)).join(' ')+'"/>').join('')+'</clipPath>';document.body.appendChild(sv);display.style.clipPath='url(#winclip)'}
+let cur=-1,menuOpen=null;
+// controls (desktop overlay + mobile panel share one state)
+const sets=[];
+function build(r1,r2,idsuffix,mobile){
+ const a=$('#ctl-r1').innerHTML.replace(/-ID/g,'-'+idsuffix),b=$('#ctl-r2').innerHTML;
+ r1.innerHTML=a;r2.innerHTML=b;
+ const s={r1,r2,menu:r1.querySelector('.menu'),yb:r1.querySelector('[data-act=menu]'),yt:r1.querySelector('[data-year]'),ex:r2.querySelector('[data-act=explore]'),snd:r2.querySelector('[data-act=sound]')};
+ sets.push(s);return s;
+}
+const mc=$('#mc');
+mc.innerHTML='<div class="r1"></div><div class="r2"></div><div class="capm" aria-hidden="true"></div>';
+build($('#r1d'),$('#r2d'),'d');
+build(mc.querySelector('.r1'),mc.querySelector('.r2'),'m');
+const capm=mc.querySelector('.capm'),capd=$('#capd');
+function closeMenu(focus){sets.forEach(s=>{s.menu.hidden=true;s.yb.setAttribute('aria-expanded','false')});if(focus&&menuOpen)menuOpen.yb.focus();menuOpen=null}
+function openMenu(s){closeMenu();s.menu.hidden=false;s.yb.setAttribute('aria-expanded','true');menuOpen=s;const items=[...s.menu.querySelectorAll('a')];items.forEach((a,i)=>a.setAttribute('aria-current',String(i===cur)));(items[Math.max(cur,0)]).focus()}
+const imgs=[];
+function artEl(i){if(imgs[i])return imgs[i];const d=DEST[i],im=new Image();im.className='art-img';im.alt='';im.decoding='async';im.src=d.a;im.style.setProperty('--y0',d.py[0]+'%');im.style.setProperty('--y1',d.py[1]+'%');arts.appendChild(im);return imgs[i]=im}
+function preview(i){
+ const n=DEST.length;if(i<0)i=n-1;if(i>=n)i=0;
+ const old=cur;cur=i;const d=DEST[i];
+ const im=artEl(i);const go=()=>{imgs.forEach((x,k)=>x&&x.classList.toggle('on',k===cur));display.classList.add('art');starsOn(false)};
+ if(im.complete&&im.naturalWidth)requestAnimationFrame(go);else im.addEventListener('load',go,{once:true});
+ artEl((i+1)%n);artEl((i-1+n)%n);
+ sets.forEach(s=>{s.yt.textContent=d.y;s.ex.href=d.d;s.ex.removeAttribute('aria-disabled');s.ex.setAttribute('aria-label','Explore '+d.y)});
+ const cap=d.spec?'Speculative future':'';capd.textContent=cap;capm.textContent=cap;
+ live.textContent='Previewing '+d.y+(d.spec?', speculative future':'');
+}
+document.addEventListener('click',e=>{
+ const t=e.target.closest('[data-act]');
+ if(!t){if(menuOpen&&!e.target.closest('.menu'))closeMenu();return}
+ const act=t.dataset.act;const s=sets.find(x=>x.r1.contains(t)||x.r2.contains(t));
+ if(act==='prev')preview(cur<0?DEST.length-1:cur-1);
+ else if(act==='next')preview(cur<0?0:cur+1);
+ else if(act==='menu'){menuOpen===s?closeMenu(true):openMenu(s)}
+ else if(act==='explore'&&t.getAttribute('aria-disabled')==='true')e.preventDefault();
+ else if(act==='sound')toggleSound();
+});
+document.addEventListener('keydown',e=>{
+ if(menuOpen){const items=[...menuOpen.menu.querySelectorAll('a')],k=items.indexOf(document.activeElement);
+  if(e.key==='Escape'){e.preventDefault();closeMenu(true)}
+  else if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();items[(k+1)%items.length].focus()}
+  else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();items[(k-1+items.length)%items.length].focus()}
+  else if(e.key==='Home'){e.preventDefault();items[0].focus()}
+  else if(e.key==='End'){e.preventDefault();items[items.length-1].focus()}
+  else if(e.key==='Tab')closeMenu();
+  return}
+ if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName))return;
+ if(e.key==='ArrowRight'&&!e.target.closest('a,button')){preview(cur<0?0:cur+1)}
+ if(e.key==='ArrowLeft'&&!e.target.closest('a,button')){preview(cur<0?DEST.length-1:cur-1)}
+});
+// ---- starfield
+const cv=$('#stars'),g=cv.getContext('2d');let W=0,H=0,dpr=1,stars=[],run=false,last=0,vis=true;
+function mk(){return{x:Math.random()*2-1,y:Math.random()*2-1,z:Math.random()*.97+.03,t:Math.random()}}
+function size(){const r=display.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);W=cv.width=Math.max(1,r.width*dpr|0);H=cv.height=Math.max(1,r.height*dpr|0);cv.style.width='100%';cv.style.height='100%'}
+function draw(dt){
+ g.clearRect(0,0,W,H);const cx=W/2,cy=H/2,sp=RM.matches?0:.03*dt;
+ for(const s of stars){s.z-=sp*(.6+s.t*.8);if(s.z<=.03){Object.assign(s,mk());s.z=1}
+  const k=.22/s.z,x=cx+s.x*W*k,y=cy+s.y*W*k*.28;if(x<0||x>W||y<0||y>H)continue;
+  const near=1-s.z,a=Math.min(1,near*1.6)*Math.min(1,(1-s.z)*0+ (s.z<.12?s.z/.12:1))*.9,r=(.35+near*1.8*(.6+s.t*.6))*dpr;
+  g.globalAlpha=a;g.fillStyle=s.t>.8?'#ffe3b8':s.t<.25?'#bcd6ff':'#f4f6ff';g.beginPath();g.arc(x,y,r,0,6.283);g.fill()}
+ g.globalAlpha=1}
+function frame(t){if(!run)return;const dt=Math.min(.05,(t-last)/1000||0);last=t;draw(dt);requestAnimationFrame(frame)}
+function starsOn(on){if(on&&!run&&vis){run=true;last=performance.now();requestAnimationFrame(frame)}else if(!on&&run){setTimeout(()=>{if(display.classList.contains('art'))run=false},1700)}}
+size();for(let i=0;i<520;i++)stars.push(mk());draw(0);
+new ResizeObserver(()=>{size();draw(0)}).observe(display);
+document.addEventListener('visibilitychange',()=>{vis=!document.hidden;if(vis&&!display.classList.contains('art'))starsOn(true)});
+RM.addEventListener('change',()=>draw(0));
+starsOn(true);
+// ---- sound
+let ctx,gain,buf,srcN,el,on=false,loading=false,gestured=false;
+const pref=()=>{try{return localStorage.getItem('iur18-sound')}catch(e){return null}};
+const setPref=v=>{try{localStorage.setItem('iur18-sound',v)}catch(e){}};
+function ui(){sets.forEach(s=>{s.snd.setAttribute('aria-pressed',String(on));s.snd.setAttribute('aria-label',on?'Sound on. Turn ambient sound off':'Sound off. Turn ambient sound on');s.snd.querySelector('.off').style.display=on?'none':'';s.snd.querySelector('.on').style.display=on?'':'none'})}
+async function soundOn(){
+ if(loading)return;loading=true;on=true;ui();
+ try{
+  if(!ctx){ctx=new (window.AudioContext||window.webkitAudioContext)();gain=ctx.createGain();gain.gain.value=0;gain.connect(ctx.destination)}
+  await ctx.resume();
+  if(!buf){buf=await ctx.decodeAudioData(await (await fetch(AUDIO)).arrayBuffer())}
+  if(!srcN){srcN=ctx.createBufferSource();srcN.buffer=buf;srcN.loop=true;srcN.connect(gain);srcN.start()}
+  if(!on){return}
+  gain.gain.cancelScheduledValues(ctx.currentTime);gain.gain.setValueAtTime(gain.gain.value,ctx.currentTime);gain.gain.linearRampToValueAtTime(.9,ctx.currentTime+3);
+ }catch(err){
+  try{el=el||Object.assign(new Audio(AUDIO),{loop:true,volume:.9});await el.play()}catch(e2){on=false;ui()}
+ }finally{loading=false}
+}
+function soundOff(){on=false;ui();if(ctx&&gain){gain.gain.cancelScheduledValues(ctx.currentTime);gain.gain.setValueAtTime(gain.gain.value,ctx.currentTime);gain.gain.linearRampToValueAtTime(0,ctx.currentTime+.6);setTimeout(()=>{if(!on&&ctx&&ctx.state==='running')ctx.suspend()},800)}if(el)el.pause()}
+function toggleSound(){gestured=true;if(on){setPref('off');soundOff()}else{setPref('on');soundOn()}}
+ui();
+function firstGesture(e){if(gestured)return;gestured=true;if(e.target.closest&&e.target.closest('[data-act=sound]'))return;if(pref()!=='off')soundOn()}
+['pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,firstGesture,{capture:true,passive:true}));
+addEventListener('pagehide',()=>{if(ctx)ctx.close();if(el)el.pause()});
+</script>
+</body></html>

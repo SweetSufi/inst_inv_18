@@ -1,0 +1,7 @@
+Investigation 18 — Pataliputra, 300 BCE
+Approved static image: V3
+Primary capability: Historical synthesis and visual storytelling
+Implementation: AI-generated image; deterministic HTML/CSS/JavaScript visitor interactions; no live LLM.
+One-shot build direction: Turn approved V3 riverside scene into independent interactive historical microsite with six discreet hotspots, restrained animation, evidence transparency, and Institute-standard typography and research note.
+Deployment: Not deployed.
+Autonomy observation: Generated interactive object studies and contextual notes from the approved scene and evidence constraints.

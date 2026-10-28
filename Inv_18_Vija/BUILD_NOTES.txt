@@ -1,0 +1,6 @@
+Investigation 18 — Destination 3: Vijayanagara, 1550 — V1
+Approved visual: late-afternoon artisan household/workshop.
+Primary capability: historical synthesis and visual storytelling.
+Implementation: AI-assisted image and authoring; deterministic browser interactions, no live LLM.
+Historical limitations and reference links included in site.
+Visual is interpretive and not independently authenticated as a precise 1550 interior.
